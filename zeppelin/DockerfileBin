@@ -1,0 +1,19 @@
+# Base java image
+FROM base:latest
+
+
+# Download zeppelin
+
+RUN wget -P /tmp http://apache.mirror.anlx.net/zeppelin/zeppelin-0.7.1/zeppelin-0.7.1-bin-all.tgz
+RUN tar -xzf /tmp/zeppelin-0.7.1-bin-all.tgz -C /usr
+RUN mv /usr/zeppelin-0.7.1-bin-all /usr/zeppelin
+RUN ls -l /usr/zeppelin/bin
+WORKDIR /usr/zeppelin
+
+
+
+# Expose default zeppelin port
+EXPOSE 8080
+
+# RUN zeppelin
+CMD ["/usr/zeppelin/bin/zeppelin.sh"]

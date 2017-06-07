@@ -6,3 +6,9 @@ services:
     - "8080:8080"
     volumes:
     - ../data/nifi/data:/usr/nifi/data
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockernet

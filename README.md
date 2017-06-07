@@ -1,6 +1,9 @@
 # big-data-containers
 Docker containers of Big Data frameworks
 
+## Docker settings
+1. docker network create -d bridge dockernet
+
 ## Base image
 1. docker build -t base -f ./base/Dockerfile .
 

@@ -4,6 +4,7 @@ FROM base:latest
 # Download nifi
 RUN wget -P /tmp http://www.mirrorservice.org/sites/ftp.apache.org/nifi/1.2.0/nifi-1.2.0-bin.tar.gz
 RUN tar -xzf /tmp/nifi-1.2.0-bin.tar.gz -C /usr
+RUN rm /tmp/nifi-1.2.0-bin.tar.gz
 RUN mv /usr/nifi-1.2.0 /usr/nifi
 WORKDIR /usr/nifi
 

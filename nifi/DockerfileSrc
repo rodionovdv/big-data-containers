@@ -6,14 +6,16 @@ RUN git config --global core.longpaths true
 RUN git config --global core.autocrlf false
 
 # Download Nifi
-WORKDIR /var
+WORKDIR /usr
 RUN git clone https://git-wip-us.apache.org/repos/asf/nifi.git
-WORKDIR /var/nifi
+WORKDIR /usr/nifi
 RUN git checkout master
 
 # Building Nifi
 RUN mvn -T C2.0 clean install
 
+# Remove maven artfifacts after build
+RUN rm -rd ~/.m2/repository
 
 # Expose default nifi port
 EXPOSE 8080

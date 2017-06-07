@@ -1,2 +1,2 @@
-# Base image
-This is base image that contains java and python
+# Zeppelin image
+This is image that contains zeppelin

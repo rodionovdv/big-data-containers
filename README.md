@@ -1,9 +1,13 @@
 # big-data-containers
 Docker containers of Big Data frameworks
 
-## Zeppelin
+## Base image
 1. docker build -t base -f ./base/Dockerfile .
-2. docker build -t zeppelin -f ./zeppelin/DockerfileBin .
-3. docker run -P -d  -h zeppelin zeppelin / docker-compose up
+
+## Zeppelin
+1. docker build -t zeppelin -f ./zeppelin/DockerfileBin .
+2. docker run -P -d  -h zeppelin zeppelin / docker-compose up
 
 ## Nifi
+1. docker build -t nifi -f ./nifi/DockerfileBin .
+2. docker run -P -d  -h nifi nifi

@@ -1,0 +1,22 @@
+# Base java image
+FROM base:latest
+
+# Pre-config
+RUN git config --global core.longpaths true
+RUN git config --global core.autocrlf false
+
+# Download Nifi
+WORKDIR /var
+RUN git clone https://git-wip-us.apache.org/repos/asf/nifi.git
+WORKDIR /var/nifi
+RUN git checkout master
+
+# Building Nifi
+RUN mvn -T C2.0 clean install
+
+
+# Expose default nifi port
+EXPOSE 8080
+
+# RUN zeppelin
+CMD ["/usr/nifi/bin/nifi.sh","start"]

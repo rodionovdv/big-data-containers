@@ -1,0 +1,15 @@
+# Base java image
+FROM base:latest
+
+# Download nifi
+RUN wget -P /tmp http://www.mirrorservice.org/sites/ftp.apache.org/nifi/1.2.0/nifi-1.2.0-bin.tar.gz
+RUN tar -xzf /tmp/nifi-1.2.0-bin.tar.gz -C /usr
+RUN mv /usr/nifi-1.2.0 /usr/nifi
+WORKDIR /usr/nifi
+
+
+# Expose default nifi port
+EXPOSE 8080
+
+# RUN zeppelin
+CMD ["/usr/nifi/bin/nifi.sh", "run"]

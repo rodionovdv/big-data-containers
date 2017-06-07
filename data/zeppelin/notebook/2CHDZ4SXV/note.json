@@ -1,0 +1,43 @@
+{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1496834946646_951176359",
+      "id": "20170607-112906_936197428",
+      "dateCreated": "Jun 7, 2017 11:29:06 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Test notebook",
+  "id": "2CHDZ4SXV",
+  "angularObjects": {
+    "2CJSPX5NB:shared_process": [],
+    "2CHC42CM1:shared_process": [],
+    "2CJU2XZ7E:shared_process": [],
+    "2CJEUY8V9:shared_process": [],
+    "2CMRRMWPK:shared_process": [],
+    "2CJT8B243:shared_process": [],
+    "2CMCR5PSU:shared_process": [],
+    "2CKJD2V3P:shared_process": [],
+    "2CMA8SREF:shared_process": [],
+    "2CJ33HQM5:shared_process": [],
+    "2CJ6214SK:shared_process": [],
+    "2CJEX2TSM:shared_process": [],
+    "2CJFYB67Y:shared_process": [],
+    "2CKWSJM2V:shared_process": [],
+    "2CKG6KJB2:shared_process": [],
+    "2CHJ2NBJ1:shared_process": [],
+    "2CHEFU2YY:shared_process": [],
+    "2CM2W4W6G:shared_process": [],
+    "2CMDR7JJY:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

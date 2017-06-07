@@ -4,7 +4,7 @@ FROM ubuntu:17.04
 # Install required components
 
 RUN apt-get update
-RUN apt-get install -y git wget openjdk-8-jdk npm libfontconfig python
+RUN apt-get install -y git wget openjdk-8-jdk npm libfontconfig python python-pip
 
 # Install maven-3
 RUN wget http://www.eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz

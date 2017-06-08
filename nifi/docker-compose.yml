@@ -5,7 +5,15 @@ services:
     ports:
     - "8080:8080"
     volumes:
-    - ../data/nifi/data:/usr/nifi/data
+    - ../data/nifi/drivers:/usr/nifi/drivers
+    - ../data/nifi/conf:/usr/nifi/conf
+    - ../data/nifi/work:/usr/nifi/work
+    - ../data/nifi/run:/usr/nifi/run
+    - ../data/nifi/state:/usr/nifi/state
+    - ../data/nifi/content_repository:/usr/nifi/content_repository
+    - ../data/nifi/database_repository:/usr/nifi/database_repository
+    - ../data/nifi/flowfile_repository:/usr/nifi/flowfile_repository
+    - ../data/nifi/provenance_repository:/usr/nifi/provenance_repository
     networks:
     - default
   postgres:

@@ -1,0 +1,33 @@
+version: '3.2'
+services:
+  nifi:
+    image: "hdp:latest"
+    # ports:
+    # - "8080:8080"
+    # volumes:
+    # - ../data/nifi/drivers:/usr/nifi/drivers
+    # - ../data/nifi/conf:/usr/nifi/conf
+    # - ../data/nifi/work:/usr/nifi/work
+    # - ../data/nifi/run:/usr/nifi/run
+    # - ../data/nifi/state:/usr/nifi/state
+    # - ../data/nifi/content_repository:/usr/nifi/content_repository
+    # - ../data/nifi/database_repository:/usr/nifi/database_repository
+    # - ../data/nifi/flowfile_repository:/usr/nifi/flowfile_repository
+    # - ../data/nifi/provenance_repository:/usr/nifi/provenance_repository
+    networks:
+    - default
+  # postgres:
+  #   image: "postgres:latest"
+  #   environment:
+  #   - POSTGRES_PASSWORD=ppass
+  #   - PGDATA=/var/lib/postgresql/data/pgdata
+  #   volumes:
+  #   - ../data/postgres/pgdata:/var/lib/postgresql/data/pgdata
+  #   ports:
+  #   - "5432:5432"
+  #   networks:
+  #   - default
+networks:
+  default:
+    external:
+      name: dockernet

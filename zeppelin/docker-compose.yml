@@ -7,3 +7,9 @@ services:
     volumes:
     - ../data/zeppelin/notebook:/usr/zeppelin/notebook
     - ../data/zeppelin/data:/usr/zeppelin/data
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockernet        

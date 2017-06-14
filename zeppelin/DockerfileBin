@@ -5,10 +5,10 @@ FROM base:latest
 RUN apt-get install -y r-base
 
 # Download zeppelin
-RUN wget -P /tmp http://apache.mirror.anlx.net/zeppelin/zeppelin-0.7.1/zeppelin-0.7.1-bin-all.tgz
-RUN tar -xzf /tmp/zeppelin-0.7.1-bin-all.tgz -C /usr
-RUN rm /tmp/zeppelin-0.7.1-bin-all.tgz
-RUN mv /usr/zeppelin-0.7.1-bin-all /usr/zeppelin
+RUN wget -P /tmp http://www-eu.apache.org/dist/zeppelin/zeppelin-0.7.2/zeppelin-0.7.2-bin-all.tgz
+RUN tar -xzf /tmp/zeppelin-0.7.2-bin-all.tgz -C /usr
+RUN rm /tmp/zeppelin-0.7.2-bin-all.tgz
+RUN mv /usr/zeppelin-0.7.2-bin-all /usr/zeppelin
 RUN ls -l /usr/zeppelin/bin
 WORKDIR /usr/zeppelin
 

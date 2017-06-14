@@ -27,19 +27,6 @@ services:
     - "5432:5432"
     networks:
     - default
-  mongo:
-    image: "mongo:latest"
-    environment:
-    - MONGO_INITDB_ROOT_USERNAME=madmin
-    - MONGO_INITDB_ROOT_PASSWORD=mpass
-    volumes:
-    - ../data/mongo:/data/db
-    ports:
-    - "27017:27017"
-    - "28017:28017"
-    networks:
-    - default
-    command: mongod
 networks:
   default:
     external:

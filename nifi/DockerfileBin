@@ -1,16 +1,19 @@
 # Base java image
 FROM base:latest
 
+# Set environment
+ENV NIFIVER 1.2.0
+
 # Download nifi
-RUN wget -P /tmp http://www.mirrorservice.org/sites/ftp.apache.org/nifi/1.2.0/nifi-1.2.0-bin.tar.gz
-RUN tar -xzf /tmp/nifi-1.2.0-bin.tar.gz -C /usr
-RUN rm /tmp/nifi-1.2.0-bin.tar.gz
-RUN mv /usr/nifi-1.2.0 /usr/nifi
-WORKDIR /usr/nifi
+RUN wget -P /tmp http://www.mirrorservice.org/sites/ftp.apache.org/nifi/$NIFIVER/nifi-$NIFIVER-bin.tar.gz
+RUN tar -xzf /tmp/nifi-$NIFIVER-bin.tar.gz -C /usr
+RUN rm /tmp/nifi-$NIFIVER-bin.tar.gz
+
+WORKDIR /usr/nifi-$NIFIVER
 
 
 # Expose default nifi port
 EXPOSE 8080
 
 # RUN zeppelin
-CMD ["/usr/nifi/bin/nifi.sh", "run"]
+CMD ["/usr/nifi-$NIFIVER/bin/nifi.sh", "run"]

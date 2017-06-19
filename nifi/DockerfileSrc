@@ -21,4 +21,4 @@ RUN rm -rd ~/.m2/repository
 EXPOSE 8080
 
 # RUN zeppelin
-CMD ["/usr/nifi/bin/nifi.sh","start"]
+CMD ["/usr/nifi-1.2.0/bin/nifi.sh","start"]

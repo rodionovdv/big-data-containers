@@ -2,19 +2,23 @@
 FROM base:latest
 
 # Preconfigure image
-RUN apt-get install -y r-base
+ENV ZEPVER 0.7.2
 
 # Download zeppelin
-RUN wget -P /tmp http://apache.mirror.anlx.net/zeppelin/zeppelin-0.7.1/zeppelin-0.7.1-bin-all.tgz
-RUN tar -xzf /tmp/zeppelin-0.7.1-bin-all.tgz -C /usr
-RUN rm /tmp/zeppelin-0.7.1-bin-all.tgz
-RUN mv /usr/zeppelin-0.7.1-bin-all /usr/zeppelin
+RUN wget -P /tmp http://apache.mirror.anlx.net/zeppelin/zeppelin-0.7.2/zeppelin-$ZEPVER-bin-all.tgz
+RUN tar -xzf /tmp/zeppelin-$ZEPVER-bin-all.tgz -C /usr
+RUN rm /tmp/zeppelin-$ZEPVER-bin-all.tgz
+RUN mv /usr/zeppelin-$ZEPVER-bin-all /usr/zeppelin
 RUN ls -l /usr/zeppelin/bin
 WORKDIR /usr/zeppelin
 
+# Install python components
+RUN yum install -y python-pip python-devel gcc
+
 # Configure image
-RUN pip install virtualenv
-RUN pip install matplotlib
+RUN pip install --upgrade pip
+RUN pip install virtualenv matplotlib seaborn
+
 
 # Expose default zeppelin port
 EXPOSE 8080

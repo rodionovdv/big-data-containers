@@ -1,2 +1,4 @@
 /data/nifi/*
 /data/postgres/*
+/data/mongo/*
+/data/*

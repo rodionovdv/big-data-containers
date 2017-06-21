@@ -17,6 +17,12 @@ chmod +x /usr/local/bin/docker-compose
 1. docker build -t nifi -f ./nifi/DockerfileBin .
 2. docker run -P -d  -h nifi nifi
 
+
+## Jupyter
+1. cd jupyter / docker-compose up
+[Juputer-DS](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook)
+
+
 ## Kylo
 1. Cloudera hadoop: run `docker exec -i  8502154af2cb /home/cloudera/cloudera-manager --enterprise --force`
   after starting set with docker-compose

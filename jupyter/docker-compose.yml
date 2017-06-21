@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  jupyter:
+    image: jupyter/datascience-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../data/jupyter:/home/jovyan
+    networks:
+    - default
+networks:
+  default:
+    external:
+      name: dockernet

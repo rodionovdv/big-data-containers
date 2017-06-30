@@ -54,7 +54,7 @@
       "title": "Load data into table",
       "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n// Zeppelin creates and injects sc (SparkContext) and sqlContext (HiveContext or SqlContext)\n// So you don\u0027t need create them manually\n\n// load bank data\nval bankText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n\ncase class Bank(age: Integer, job: String, marital: String, education: String, balance: Integer)\n\nval bank \u003d bankText.map(s \u003d\u003e s.split(\";\")).filter(s \u003d\u003e s(0) !\u003d \"\\\"age\\\"\").map(\n    s \u003d\u003e Bank(s(0).toInt, \n            s(1).replaceAll(\"\\\"\", \"\"),\n            s(2).replaceAll(\"\\\"\", \"\"),\n            s(3).replaceAll(\"\\\"\", \"\"),\n            s(5).replaceAll(\"\\\"\", \"\").toInt\n        )\n).toDF()\nbank.registerTempTable(\"bank\")",
       "user": "anonymous",
-      "dateUpdated": "Jun 7, 2017 11:51:29 AM",
+      "dateUpdated": "Jun 30, 2017 2:10:53 PM",
       "config": {
         "colWidth": 12.0,
         "title": true,
@@ -83,7 +83,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\nimport org.apache.commons.io.IOUtils\n\nimport java.net.URL\n\nimport java.nio.charset.Charset\n\nbankText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:30\n\ndefined class Bank\n\nbank: org.apache.spark.sql.DataFrame \u003d [age: int, job: string ... 3 more fields]\n\nwarning: there was one deprecation warning; re-run with -deprecation for details\n"
+            "data": "\nimport org.apache.commons.io.IOUtils\n\nimport java.net.URL\n\nimport java.nio.charset.Charset\n\nbankText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:35\n\ndefined class Bank\n\nbank: org.apache.spark.sql.DataFrame \u003d [age: int, job: string ... 3 more fields]\n\nwarning: there was one deprecation warning; re-run with -deprecation for details\n"
           }
         ]
       },
@@ -91,15 +91,15 @@
       "jobName": "paragraph_1423500779206_-1502780787",
       "id": "20150210-015259_1403135953",
       "dateCreated": "Feb 10, 2015 1:52:59 AM",
-      "dateStarted": "Jun 7, 2017 11:51:29 AM",
-      "dateFinished": "Jun 7, 2017 11:52:00 AM",
+      "dateStarted": "Jun 30, 2017 2:10:54 PM",
+      "dateFinished": "Jun 30, 2017 2:11:27 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql \nselect age, count(1) value\nfrom bank \nwhere age \u003c 30 \ngroup by age \norder by age",
       "user": "anonymous",
-      "dateUpdated": "Jun 7, 2017 11:52:28 AM",
+      "dateUpdated": "Jun 30, 2017 2:12:01 PM",
       "config": {
         "colWidth": 4.0,
         "results": [
@@ -123,28 +123,20 @@
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "age\tvalue\n19\t4\n20\t3\n21\t7\n22\t9\n23\t20\n24\t24\n25\t44\n26\t77\n27\t94\n28\t103\n29\t97\n"
-          }
-        ]
-      },
       "apps": [],
       "jobName": "paragraph_1423500782552_-1439281894",
       "id": "20150210-015302_1492795503",
       "dateCreated": "Feb 10, 2015 1:53:02 AM",
-      "dateStarted": "Jun 7, 2017 11:52:29 AM",
+      "dateStarted": "Jun 30, 2017 2:07:01 PM",
       "dateFinished": "Jun 7, 2017 11:52:31 AM",
-      "status": "FINISHED",
+      "status": "ABORT",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql \nselect age, count(1) value \nfrom bank \nwhere age \u003c ${maxAge\u003d30} \ngroup by age \norder by age",
       "user": "anonymous",
-      "dateUpdated": "Mar 17, 2017 12:17:39 PM",
+      "dateUpdated": "Jun 30, 2017 2:07:03 PM",
       "config": {
         "colWidth": 4.0,
         "results": [
@@ -176,28 +168,20 @@
           }
         }
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "age\tvalue\n19\t4\n20\t3\n21\t7\n22\t9\n23\t20\n24\t24\n25\t44\n26\t77\n27\t94\n28\t103\n29\t97\n30\t150\n31\t199\n32\t224\n33\t186\n34\t231\n"
-          }
-        ]
-      },
       "apps": [],
       "jobName": "paragraph_1423720444030_-1424110477",
       "id": "20150212-145404_867439529",
       "dateCreated": "Feb 12, 2015 2:54:04 PM",
-      "dateStarted": "Dec 17, 2016 3:30:58 PM",
+      "dateStarted": "Jun 30, 2017 2:07:03 PM",
       "dateFinished": "Dec 17, 2016 3:31:07 PM",
-      "status": "FINISHED",
+      "status": "ABORT",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql \nselect age, count(1) value \nfrom bank \nwhere marital\u003d\"${marital\u003dsingle,single|divorced|married}\" \ngroup by age \norder by age",
       "user": "anonymous",
-      "dateUpdated": "Mar 17, 2017 12:18:18 PM",
+      "dateUpdated": "Jun 30, 2017 2:07:04 PM",
       "config": {
         "colWidth": 4.0,
         "results": [
@@ -215,7 +199,8 @@
           "language": "sql",
           "editOnDblClick": false
         },
-        "editorMode": "ace/mode/sql"
+        "editorMode": "ace/mode/sql",
+        "runOnSelectionChange": true
       },
       "settings": {
         "params": {
@@ -367,25 +352,25 @@
   "name": "Zeppelin Tutorial/Basic Features (Spark)",
   "id": "2A94M5J1Z",
   "angularObjects": {
-    "2CJSHY4YG:shared_process": [],
-    "2CJFY32UT:shared_process": [],
-    "2CHZV1KW9:shared_process": [],
-    "2CHGEQHK3:shared_process": [],
-    "2CKVSXBNJ:shared_process": [],
-    "2CM74875S:shared_process": [],
-    "2CJRXJGD5:shared_process": [],
-    "2CKYB8Z62:shared_process": [],
-    "2CM2QW3GM:shared_process": [],
-    "2CJFUZ2WU:shared_process": [],
-    "2CKPFY79H:shared_process": [],
-    "2CM9CB6DE:shared_process": [],
-    "2CH5M6EYZ:shared_process": [],
-    "2CKJX1PGV:shared_process": [],
-    "2CJVDDCJ8:shared_process": [],
-    "2CHPQPGGH:shared_process": [],
-    "2CJTDZV3M:shared_process": [],
-    "2CMZ4E1TM:shared_process": [],
-    "2CHJFV3X6:shared_process": []
+    "2CNMM7997:shared_process": [],
+    "2CNH4DD9R:shared_process": [],
+    "2CM12BN5W:shared_process": [],
+    "2CPANW1X3:shared_process": [],
+    "2CMQ131ED:shared_process": [],
+    "2CMNBF1WZ:shared_process": [],
+    "2CPC8RU7E:shared_process": [],
+    "2CP4WJEDQ:shared_process": [],
+    "2CMKFDFUM:shared_process": [],
+    "2CMS68RGK:shared_process": [],
+    "2CMQ6JFD4:shared_process": [],
+    "2CPRZU9CT:shared_process": [],
+    "2CNCRJ1HT:shared_process": [],
+    "2CMX5YBTS:shared_process": [],
+    "2CP1KZHDC:shared_process": [],
+    "2CK6RCCXC:shared_process": [],
+    "2CNQXRK18:shared_process": [],
+    "2CK62QF2A:shared_process": [],
+    "2CMDFADRS:shared_process": []
   },
   "config": {
     "looknfeel": "default"

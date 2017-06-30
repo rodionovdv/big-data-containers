@@ -26,3 +26,10 @@ chmod +x /usr/local/bin/docker-compose
 ## Kylo
 1. Cloudera hadoop: run `docker exec -i  8502154af2cb /home/cloudera/cloudera-manager --enterprise --force`
   after starting set with docker-compose
+
+
+## Spark
+1. docker build -t spark -f ./spark/Dockerfile .
+2. docker-compose up
+
+Optional: _docker run -it --name spark -p 8080:8080 -p 7077:7077 -p 8888:8888 -p 8081:8081 -p 8082:8082 -p 5050:5050 -p 5051:5051 -p 4040:4040 -h spark spark bash_

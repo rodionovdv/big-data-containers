@@ -3,13 +3,38 @@ services:
   zeppelin:
     image: "zeppelin:latest"
     ports:
-    - "8080:8080"
+    - "8087:8080"
+    - "9002:9001"
+    - "4041:4040"
+    - "8889:8888"
     volumes:
     - ../data/zeppelin/notebook:/usr/zeppelin/notebook
     - ../data/zeppelin/data:/usr/zeppelin/data
+    - ../data/zeppelin/supervisor:/usr/local/supervisor
+    - ../data/zeppelin/supervisor/logs:/usr/local/supervisor/logs
+    networks:
+      - default
+  spark:
+    image: "spark:latest"
+    ports:
+    - "8080:8080"
+    - "7077:7077"
+    - "7072:7072"
+    - "8081:8081"
+    - "8082:8082"
+    - "5050:5050"
+    - "5051:5051"
+    - "4040:4040"
+    - "9001:9001"
+    - "8888:8888"
+    environment:
+    - MASTER=local[*]
+    volumes:
+    - ../data/spark:/usr/local/supervisor
+    - ../data/spark/logs:/usr/local/supervisor/logs
     networks:
       - default
 networks:
   default:
     external:
-      name: dockernet        
+      name: dockernet

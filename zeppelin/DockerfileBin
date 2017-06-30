@@ -1,5 +1,11 @@
 # Base java image
-FROM base:latest
+FROM spark:latest
+
+RUN python --version
+# Configure spark and mesos
+ENV MASTER mesos://spark:5050
+ENV MESOS_NATIVE_JAVA_LIBRARY /usr/lib/libmesos.so
+ENV SPARK_HOME /usr/local/spark/
 
 # Preconfigure image
 ENV ZEPVER 0.7.2
@@ -12,12 +18,13 @@ RUN mv /usr/zeppelin-$ZEPVER-bin-all /usr/zeppelin
 RUN ls -l /usr/zeppelin/bin
 WORKDIR /usr/zeppelin
 
-# Install python components
-RUN yum install -y python-pip python-devel gcc
 
 # Configure image
-RUN pip install --upgrade pip
-RUN pip install virtualenv matplotlib seaborn
+#RUN pip3 install --upgrade pip3
+#RUN pip3 install --upgrade distribute
+RUN python --version
+#RUN pip install distribute==0.6.28 functools32  subprocess32
+RUN pip install matplotlib seaborn
 
 
 # Expose default zeppelin port

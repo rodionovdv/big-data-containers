@@ -3,9 +3,9 @@ FROM spark:latest
 
 RUN python --version
 # Configure spark and mesos
-ENV MASTER mesos://spark:5050
-ENV MESOS_NATIVE_JAVA_LIBRARY /usr/lib/libmesos.so
+ENV MASTER spark://spark:7077
 ENV SPARK_HOME /usr/local/spark/
+ENV FLINK_HOME /usr/local/flink/
 
 # Preconfigure image
 ENV ZEPVER 0.7.2
@@ -20,10 +20,7 @@ WORKDIR /usr/zeppelin
 
 
 # Configure image
-#RUN pip3 install --upgrade pip3
-#RUN pip3 install --upgrade distribute
 RUN python --version
-#RUN pip install distribute==0.6.28 functools32  subprocess32
 RUN pip install matplotlib seaborn
 
 

@@ -12,12 +12,19 @@ services:
     - "5051:5051"
     - "4040:4040"
     - "9001:9001"
+    - "8888:8888"
+    - "8085:8085"
     volumes:
     - ../data/spark:/usr/local/supervisor
     - ../data/spark/logs:/usr/local/supervisor/logs
     networks:
-      - default
-    entrypoint: /etc/entrypoint.sh
+      default:
+        ipv4_address: 172.18.0.10
+    entrypoint:
+    - supervisord
+    - -n
+    - -c
+    - /usr/local/supervisor/supervisord.conf
 networks:
   default:
     external:

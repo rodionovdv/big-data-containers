@@ -7,7 +7,7 @@ services:
     volumes:
     - ../data/nifi/drivers:/usr/nifi-1.2.0/drivers
     - ../data/nifi/conf:/usr/nifi-1.2.0/conf
-    - ../data/nifi/work:/usr/nifi-1.2.0/work
+    # - ../data/nifi/work:/usr/nifi-1.2.0/work
     - ../data/nifi/run:/usr/nifi-1.2.0/run
     - ../data/nifi/state:/usr/nifi-1.2.0/state
     - ../data/nifi/content_repository:/usr/nifi-1.2.0/content_repository

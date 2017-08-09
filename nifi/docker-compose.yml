@@ -14,6 +14,11 @@ services:
     - ../data/nifi/database_repository:/usr/nifi-1.2.0/database_repository
     - ../data/nifi/flowfile_repository:/usr/nifi-1.2.0/flowfile_repository
     - ../data/nifi/provenance_repository:/usr/nifi-1.2.0/provenance_repository
+    environment:
+    - NIFIVER=1.2.0
+    entrypoint:
+    - /usr/nifi-1.2.0/bin/nifi.sh
+    - run
     networks:
     - default
   postgres:
@@ -40,6 +45,14 @@ services:
     networks:
     - default
     command: mongod
+  mongoclient:
+    image: "mongoclient/mongoclient:latest"
+    volumes:
+    - ../data/mongoclient:/data/db
+    ports:
+    - "3000:3000"
+    networks:
+    - default
 networks:
   default:
     external:

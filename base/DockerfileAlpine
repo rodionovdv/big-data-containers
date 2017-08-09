@@ -1,14 +1,14 @@
 # Base java image
-FROM centos:latest
+FROM openjdk:alpine
 
 # Set environment
 ENV MVNVER=3.3.9
 
 # Install required components
-RUN yum --enablerepo=extras install -y epel-release && \
-    yum upgrade -y && \
-    yum install -y git wget java-1.8.0-openjdk && \
-    yum clean all
+# RUN yum --enablerepo=extras install -y epel-release && \
+#     yum upgrade -y && \
+#     yum install -y git wget java-1.8.0-openjdk && \
+#     yum clean all
 
 # Install maven-3
 RUN wget http://www.eu.apache.org/dist/maven/maven-3/$MVNVER/binaries/apache-maven-$MVNVER-bin.tar.gz && \

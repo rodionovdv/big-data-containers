@@ -8,6 +8,7 @@ chmod +x /usr/local/bin/docker-compose
 
 ## Base image
 1. docker build -t base -f ./base/Dockerfile .
+2. Lightweight Alpine version: docker build -t alpinebase -f ./base/DockerfileAlpine .
 
 ## Zeppelin
 1. docker build -t zeppelin -f ./zeppelin/DockerfileBin .
